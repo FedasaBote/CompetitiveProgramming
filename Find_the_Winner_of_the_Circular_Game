@@ -1,3 +1,4 @@
+// Iterative
 class Solution(object):
     def findTheWinner(self, n, k):
         """
@@ -24,3 +25,18 @@ class Solution(object):
                     
             arr.pop(last) 
         
+
+//Recursive  https://leetcode.com/problems/find-the-winner-of-the-circular-game/solutions/2847011/python-code-with-intuition-o-n/
+class Solution(object):
+    def findTheWinner(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: int
+        """
+        def helper(n,k):
+            if n==1:
+                return 0
+            prevcall=helper(n-1,k)
+            return (prevcall+k)%n
+        return helper(n,k)+1
