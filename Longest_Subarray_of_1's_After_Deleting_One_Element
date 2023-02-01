@@ -1,0 +1,34 @@
+1st possible soluton
+////////////////////////
+ def longestSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        k=1
+        j=0
+        ans=0
+        for i in range(len(nums)):
+            if(nums[i]==0):
+                k-=1
+            if k<0:
+                if(nums[j]==0):
+                    k+=1
+                j+=1
+            ans=max(ans,i-j)
+        return ans
+
+2nd possible solution
+/////////////////////////
+def longestSubarray(self, nums: List[int]) -> int:
+       
+        longest = prev = curr = 0
+
+        for bit in nums:
+            if bit:
+                curr += 1
+                longest = max(longest, prev + curr)
+            else:
+                prev, curr = curr, 0
+
+        return longest - (longest == len(nums))
