@@ -1,0 +1,22 @@
+def maxVowels(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        vowels=["a","e","i","o","u"]
+        maxLength=0
+        start=0
+        for i in range(k):
+            if s[i] in vowels:
+                maxLength+=1
+        ans=maxLength
+        for i in range(k,len(s)):
+            if s[i] in vowels:
+                maxLength+=1
+            if s[start] in vowels:
+                maxLength-=1
+            start+=1
+            ans=max(ans,maxLength)
+        return ans
+            
