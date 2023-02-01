@@ -1,0 +1,17 @@
+ def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        num=abs(x)
+        reversed=0
+        while num!=0:
+            r=num%10
+            reversed=reversed*10+r
+            num=num//10
+        if x<0:
+            reversed*=-1
+        if int(reversed) >= 2**31-1 or int(reversed) <= -2**31:return 0
+
+        return reversed
+            
