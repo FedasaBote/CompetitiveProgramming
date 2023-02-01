@@ -1,0 +1,18 @@
+ def minRemoveToMakeValid(self, s: str) -> str:
+        res=""
+        arr=[]
+        for i in range(len(s)):
+            if(s[i]=="("):
+                arr.append(i)
+            if (s[i]==")"):
+                if(len(arr)==0):
+                    continue
+                else:arr.pop()
+            res+=s[i]
+        for i in range(len(res)-1,-1,-1):
+            if(res[i]=="(" and len(arr)!=0):
+                arr.pop()
+                res=res[:i]+res[i+1:]
+                
+        return res
+
