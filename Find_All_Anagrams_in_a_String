@@ -1,0 +1,23 @@
+  def findAnagrams(self, s: str, p: str) -> List[int]:
+        dp={}
+        ds={}
+        left=0
+        arr=[]
+        if len(p)>len(s): return arr
+        for i in range(len(p)):
+            dp[p[i]]=dp.get(p[i],0)+1
+            ds[s[i]]=ds.get(s[i],0)+1
+        if dp==ds:
+                arr.append(left)
+        for i in range(len(p),len(s)):
+            ds[s[left]]=ds[s[left]]-1
+            if ds[s[left]]==0:
+                ds.pop(s[left])
+            ds[s[i]]=ds.get(s[i],0)+1
+            left+=1
+            if dp==ds:
+                arr.append(left)
+            
+        return arr
+
+
