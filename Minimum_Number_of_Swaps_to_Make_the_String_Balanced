@@ -1,0 +1,10 @@
+ def minSwaps(self, s: str) -> int:
+        close =0
+        maxClose=0
+        for i in range(len(s)):
+            if s[i]=="]":
+                close+=1
+            else:
+                close-=1
+            maxClose=max(maxClose,close)
+        return (maxClose+1)//2
