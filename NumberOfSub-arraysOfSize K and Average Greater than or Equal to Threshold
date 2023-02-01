@@ -1,0 +1,14 @@
+def numOfSubarrays(self, arr: List[int], k: int, threshold: int) -> int:
+        left=0
+        sum=0
+        ans=0
+        for i in range(k):
+            sum+=arr[i]
+        if sum/k>=threshold:
+            ans+=1
+        for i in range(k,len(arr)):
+            sum=sum-arr[left]+arr[i]
+            if sum/k>=threshold:
+                ans+=1
+            left+=1
+        return ans
