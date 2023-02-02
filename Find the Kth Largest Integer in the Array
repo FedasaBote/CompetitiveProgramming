@@ -1,0 +1,11 @@
+ def kthLargestNumber(self, nums, k):
+        """
+        :type nums: List[str]
+        :type k: int
+        :rtype: str
+        """
+        nums = [int(i) for i in nums]
+        nums.sort()
+        nums=nums[::-1]
+        nums=[str(i) for i in nums]
+        return nums[k-1]
