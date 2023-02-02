@@ -1,0 +1,19 @@
+def maxOperations(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        m={}
+        res=0
+        for i in range(len(nums)):
+            m[nums[i]]=m.get(nums[i],0)+1
+        for num in m:
+            if k-num in m:
+                if num != k - num:
+                    res += min(m[num], m[k-num])
+                    m[k-num] = 0
+                    m[num] = 0
+                else:
+                     res += int(m[num] / 2)
+        return res
