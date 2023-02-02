@@ -1,0 +1,17 @@
+ def insertionSortList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        current=head
+        while current:
+            temp=head
+            while temp!=current:
+                if temp.val>current.val:
+                    temp.val,current.val=current.val,temp.val
+                temp=temp.next
+            current=current.next
+        return head
+        
+            
+           
