@@ -1,0 +1,14 @@
+def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        current=head
+        
+        if current==None or current.next == None:
+            return current
+        temp = self.reverseList(current.next)
+
+        current.next.next=current
+        current.next=None
+        return temp
