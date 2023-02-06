@@ -3,10 +3,6 @@ def pairSum(self, head):
         :type head: Optional[ListNode]
         :rtype: int
         """
-        if not head.next:
-            return head.val
-        if not head.next.next:
-            return head.next.val+head.val
         #last,start=head.next,head
         #maxx=0
         def reverse(start,last,maxx):
@@ -18,5 +14,5 @@ def pairSum(self, head):
             start=start.next
             return start,last,maxx
             
-        start,last,maxx=reverse(head,head.next,0)
+        start,last,maxx=reverse(head,head,0)
         return maxx
