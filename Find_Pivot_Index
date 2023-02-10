@@ -1,0 +1,13 @@
+def pivotIndex(self, nums: List[int]) -> int:
+        m={}
+        curSum=0
+        
+        for i in range(len(nums)):
+            curSum+=nums[i]
+            m[i]=curSum 
+        prev=0
+        for i in m:
+            if curSum-m[i]==prev:
+                return i
+            prev=m[i]
+        return -1
