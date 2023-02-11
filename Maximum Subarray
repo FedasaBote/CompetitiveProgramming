@@ -1,0 +1,14 @@
+def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        curSum=0
+        maxx=nums[0]
+        for i in range(len(nums)):
+            curSum+=nums[i]
+            maxx=max(maxx,curSum)
+            if curSum<0:
+                curSum=0
+        
+        return maxx
