@@ -1,0 +1,22 @@
+ def product(arg1,arg2,arg3):
+            if arg1=="+":
+                return int(int(arg2)+int(arg3))
+            elif arg1=="*":
+                return int(int(arg2)*int(arg3))
+            elif arg1=="/":
+                print(arg3,arg2)
+                print(int(int(arg3)/int(arg2)))
+                return int(int(arg3)/int(arg2))
+            elif arg1=="-":
+                return int(int(arg3)-int(arg2))
+        operations=["-","/","*","+"]
+        ans=[]
+        for i in range(len(tokens)):
+            if tokens[i] in operations:
+                arg1=ans.pop()
+                arg2=ans.pop()
+                val=product(tokens[i],arg1,arg2)
+                ans.append(str(val))
+            else:
+                ans.append(tokens[i])
+        return int(ans[0])
