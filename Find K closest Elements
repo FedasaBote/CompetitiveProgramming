@@ -1,0 +1,27 @@
+class Solution {
+    public List<Integer> findClosestElements(int[] arr, int k, int x) {
+        int windowStart=0,rank=Integer.MAX_VALUE,windowrank=0;
+        int ansStar=0,ansEnd=k-1;
+
+        for(int windowEnd=0;windowEnd<arr.length;windowEnd++){
+            windowrank+=Math.abs(x-arr[windowEnd]);
+            
+            if(windowrank<rank && windowEnd>=k-1){
+                rank=windowrank;
+                ansStar=windowStart;
+                ansEnd=windowEnd;
+            }
+            if(windowEnd>=k-1){
+                windowrank-=Math.abs(x-arr[windowStart]);
+                windowStart+=1;
+            }
+        }
+        System.out.println(ansEnd-ansStar);
+        List<Integer> ans=new ArrayList();
+        for(int win=ansStar;win<ansEnd+1;win++){
+            ans.add(arr[win]);
+        }
+
+        return ans;
+    }   
+}
