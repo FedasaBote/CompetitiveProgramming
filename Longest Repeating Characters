@@ -1,0 +1,26 @@
+class Solution {
+    public int characterReplacement(String s, int k) {
+        int windowStart = 0, maxLength = 0, maxCount = 0;
+        Map<Character, Integer> map = new HashMap<>();
+
+        for (int windowEnd = 0; windowEnd < s.length(); windowEnd++) {
+            char rightChar = s.charAt(windowEnd);
+            map.put(rightChar, map.getOrDefault(rightChar, 0) + 1);
+            maxCount = Math.max(maxCount, map.get(rightChar));
+
+            while (windowEnd - windowStart + 1 - maxCount > k) {
+                char leftchar = s.charAt(windowStart);
+                map.put(leftchar, map.get(leftchar) - 1);
+
+                if (map.get(leftchar) == 0)
+                    map.remove(leftchar);
+
+                windowStart++;
+            }
+
+            maxLength = Math.max(maxLength, windowEnd - windowStart + 1);
+        }
+
+        return maxLength;
+    }
+}
