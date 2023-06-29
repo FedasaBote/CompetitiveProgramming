@@ -1,0 +1,26 @@
+class Solution {
+    public int countGoodNumbers(long n) {
+    long odd = n / 2;
+    long even = n - odd;
+    long mod = (long)Math.pow(10, 9)+7;
+    long evenMod=modularExponentiation(5,even,mod);
+    long oddMod=modularExponentiation(4,odd,mod);
+
+    return (int) ((evenMod*oddMod)%mod);
+    }
+
+    private long modularExponentiation(long base, long exponent, long mod) {
+    long result = 1;
+
+    while (exponent > 0) {
+        if (exponent % 2 == 1) {
+            result = (result * base) % mod;
+        }
+
+        base = (base * base) % mod;
+        exponent /= 2;
+    }
+
+    return result;
+    }
+}
