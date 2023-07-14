@@ -1,0 +1,45 @@
+class BrowserHistory {
+     private Stack<String> forward;
+     private Stack<String> backward;
+     String currentUrl;
+    public BrowserHistory(String homepage) {
+        forward = new Stack<>();
+        backward = new Stack<>();
+        currentUrl = homepage;
+    }
+    
+    public void visit(String url) {
+        backward.push(currentUrl);
+        currentUrl=url;
+        forward.clear();
+    }
+    
+    public String back(int steps) {
+        int i=0;
+        while(i<steps && !backward.isEmpty()){
+            forward.push(currentUrl);
+            currentUrl=backward.pop();
+            i++;
+        }
+        return currentUrl;
+    }
+    
+    public String forward(int steps) {
+        int i=0;
+        while(i<steps && !forward.isEmpty()){
+            backward.push(currentUrl);
+            currentUrl=forward.pop();
+            i++;
+        }
+
+        return currentUrl;
+    }
+}
+
+/**
+ * Your BrowserHistory object will be instantiated and called as such:
+ * BrowserHistory obj = new BrowserHistory(homepage);
+ * obj.visit(url);
+ * String param_2 = obj.back(steps);
+ * String param_3 = obj.forward(steps);
+ */
