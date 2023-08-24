@@ -1,0 +1,14 @@
+function findCenter(edges: number[][]): number {
+  let n: number = edges.length + 1;
+  let degree: number[] = Array(n).fill(0);
+  for (let [u, v] of edges) {
+    degree[u - 1]++;
+    degree[v - 1]++;
+  }
+  for (let i = 0; i < n; i++) {
+    if (degree[i] === n - 1) {
+      return i + 1;
+    }
+  }
+  return -1;
+}
