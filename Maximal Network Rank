@@ -1,0 +1,31 @@
+import java.util.HashSet;
+import java.util.Set;
+
+class Solution {
+    public int maximalNetworkRank(int n, int[][] roads) {
+        Set<Integer>[] connections = new Set[n];
+        
+        for (int i = 0; i < n; i++) {
+            connections[i] = new HashSet<>();
+        }
+        
+        for (int[] road : roads) {
+            connections[road[0]].add(road[1]);
+            connections[road[1]].add(road[0]);
+        }
+        
+        int maxRank = 0;
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int rank = connections[i].size() + connections[j].size();
+                if (connections[i].contains(j)) {
+                    rank--;
+                }
+                maxRank = Math.max(maxRank, rank);
+            }
+        }
+        
+        return maxRank;
+    }
+}
