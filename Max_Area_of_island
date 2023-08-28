@@ -1,0 +1,35 @@
+class Solution {
+    private int[][] grid;
+    public int maxAreaOfIsland(int[][] grid) {
+        this.grid = grid;
+        int maxArea =0;
+
+        for(int row=0;row<grid.length;row++){
+            for(int col=0;col<grid[0].length;col++){
+                if(grid[row][col]==1)
+                    maxArea=Math.max(maxArea,dfs(row,col));
+            }
+        }
+
+        return maxArea;
+    }
+    private boolean inBound(int row, int col){
+        return row>=0 && row<grid.length && col>=0 && col<grid[0].length;
+    }
+    public int dfs(int row, int col){
+        grid[row][col]=2;
+        int[][] directions= new int[][]{{1,0},{0,1},{-1,0},{0,-1}};
+        int maxArea=1;
+        for(int[] dir:directions){
+            int n_row= row+dir[0];
+            int n_col = col+dir[1];
+            if(inBound(n_row,n_col) && grid[n_row][n_col]==1){
+                maxArea+=dfs(n_row,n_col);
+            }
+
+        }
+
+        return maxArea;
+    }
+
+}
