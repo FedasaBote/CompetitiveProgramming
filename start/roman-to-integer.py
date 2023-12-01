@@ -1,0 +1,22 @@
+class Solution(object):
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        dicti={'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+        integer=0
+        i=len(s)-1
+        while i>=0:
+            
+            if dicti[s[i]]>dicti[s[i-1]] and i!=0:
+                r=dicti[s[i]]-dicti[s[i-1]]
+                i=i-1
+            else:
+                r=dicti[s[i]]
+            integer=r+integer
+            i=i-1
+        return integer
+obj=Solution()
+print(obj.romanToInt('MCMXCIV'))
+        
