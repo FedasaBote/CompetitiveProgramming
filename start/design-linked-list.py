@@ -53,7 +53,7 @@ class MyLinkedList:
         current=self.head
         i=0
         while i<index-1:
-            if not current.next:
+            if not current or not current.next:
                 return -1
             current=current.next
             i+=1
